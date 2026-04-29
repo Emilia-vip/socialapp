@@ -32,7 +32,10 @@ export default function AuthPage({ onLogin }: Props) {
           ? { username: data.get("username"), password: data.get("password") }
           : {
               username: data.get("username"),
+              display_name: data.get("display_name"),
               email: data.get("email"),
+              phone: data.get("phone"),
+              birthdate: data.get("birthdate"),
               password: data.get("password"),
             };
 
@@ -90,17 +93,52 @@ export default function AuthPage({ onLogin }: Props) {
               </div>
 
               {mode === "register" && (
-                <div className="flex flex-col gap-1.5">
-                  <Label htmlFor="email">Email</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    placeholder="you@example.com"
-                    autoComplete="email"
-                    required
-                  />
-                </div>
+                <>
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="display_name">Display name</Label>
+                    <Input
+                      id="display_name"
+                      name="display_name"
+                      placeholder="Your Name"
+                      autoComplete="name"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="email">Email</Label>
+                    <Input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="you@example.com"
+                      autoComplete="email"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="phone">Phone</Label>
+                    <Input
+                      id="phone"
+                      name="phone"
+                      type="tel"
+                      placeholder="+46701234567"
+                      autoComplete="tel"
+                      required
+                    />
+                  </div>
+
+                  <div className="flex flex-col gap-1.5">
+                    <Label htmlFor="birthdate">Date of birth</Label>
+                    <Input
+                      id="birthdate"
+                      name="birthdate"
+                      type="date"
+                      required
+                    />
+                  </div>
+                </>
               )}
 
               <div className="flex flex-col gap-1.5">
