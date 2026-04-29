@@ -5,8 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import type { Auth } from "../App";
-
-const API = "http://localhost:3000";
+import { API_URL } from "@/lib/utils";
 
 type Post = {
   id: number;
@@ -41,7 +40,7 @@ export default function FeedPage({ auth, onLogout }: Props) {
     setFeedLoading(true);
     setFeedError("");
     try {
-      const res = await fetch(`${API}/feed`, { headers: authHeader });
+      const res = await fetch(`${API_URL}/feed`, { headers: authHeader });
       if (!res.ok) throw new Error();
       const data = await res.json();
       setPosts(data);
@@ -64,7 +63,7 @@ export default function FeedPage({ auth, onLogout }: Props) {
     const formData = new FormData(e.currentTarget);
 
     try {
-      const res = await fetch(`${API}/create`, {
+      const res = await fetch(`${API_URL}/create`, {
         method: "POST",
         headers: authHeader,
         body: formData,
@@ -92,7 +91,7 @@ export default function FeedPage({ auth, onLogout }: Props) {
     setFollowMsg("");
 
     try {
-      const res = await fetch(`${API}/toggle-follow/${username}`, {
+      const res = await fetch(`${API_URL}/toggle-follow/${username}`, {
         method: "POST",
         headers: authHeader,
       });

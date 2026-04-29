@@ -4,8 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import type { User } from "../App";
-
-const API = "http://localhost:3000";
+import { API_URL } from "@/lib/utils";
 
 type Props = {
   onLogin: (token: string, user: User) => void;
@@ -26,7 +25,8 @@ export default function AuthPage({ onLogin }: Props) {
     const data = new FormData(e.currentTarget);
 
     try {
-      const endpoint = mode === "login" ? `${API}/login` : `${API}/register`;
+      const endpoint =
+        mode === "login" ? `${API_URL}/login` : `${API_URL}/register`;
       const body =
         mode === "login"
           ? { username: data.get("username"), password: data.get("password") }
@@ -65,11 +65,15 @@ export default function AuthPage({ onLogin }: Props) {
   return (
     <div className="flex items-center justify-center min-h-screen p-4">
       <div className="w-full max-w-sm flex flex-col gap-4">
-        <h1 className="text-center text-2xl font-bold tracking-tight">socialapp</h1>
+        <h1 className="text-center text-2xl font-bold tracking-tight">
+          socialapp
+        </h1>
         <Card>
           <CardHeader>
             <CardTitle className="text-base font-medium">
-              {mode === "login" ? "Sign in to your account" : "Create an account"}
+              {mode === "login"
+                ? "Sign in to your account"
+                : "Create an account"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -106,7 +110,9 @@ export default function AuthPage({ onLogin }: Props) {
                   name="password"
                   type="password"
                   placeholder="••••••••"
-                  autoComplete={mode === "login" ? "current-password" : "new-password"}
+                  autoComplete={
+                    mode === "login" ? "current-password" : "new-password"
+                  }
                   required
                 />
               </div>
@@ -124,7 +130,11 @@ export default function AuthPage({ onLogin }: Props) {
 
             <p className="mt-4 text-center text-sm text-muted-foreground">
               {mode === "login" ? "No account?" : "Already have an account?"}{" "}
-              <button type="button" onClick={toggle} className="underline text-foreground">
+              <button
+                type="button"
+                onClick={toggle}
+                className="underline text-foreground"
+              >
                 {mode === "login" ? "Register" : "Sign in"}
               </button>
             </p>
