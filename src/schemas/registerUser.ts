@@ -3,7 +3,6 @@ export const registerSchema = {
     type: "object",
     required: [
       "username",
-      "visibility",
       "display_name",
       "email",
       "phone",

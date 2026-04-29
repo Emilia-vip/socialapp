@@ -41,6 +41,11 @@ export async function register(
   request: FastifyRequest<{ Body: RegisterRequest }>,
   reply: FastifyReply,
 ) {
+  const input: RegisterRequest = {
+    visibility: "public",
+    ...request.body,
+  };
+
   const user = await repository.users.insertOne(request.body);
 
   const response = await generateAuthResponse(user, reply);
