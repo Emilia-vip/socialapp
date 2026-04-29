@@ -46,7 +46,7 @@ export async function register(
     ...request.body,
   };
 
-  const user = await repository.users.insertOne(request.body);
+  const user = await repository.users.insertOne(input);
 
   const response = await generateAuthResponse(user, reply);
 
