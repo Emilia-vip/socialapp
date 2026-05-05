@@ -66,17 +66,20 @@ export default function AuthPage({ onLogin }: Props) {
   };
 
   return (
-    <div className="flex items-center justify-center min-h-screen p-4">
-      <div className="w-full max-w-sm flex flex-col gap-4">
-        <h1 className="text-center text-2xl font-bold tracking-tight">
-          socialapp
-        </h1>
-        <Card>
-          <CardHeader>
-            <CardTitle className="text-base font-medium">
+    <div className="flex items-center justify-center min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 p-4">
+      <div className="w-full max-w-sm flex flex-col gap-6">
+        <div className="text-center mb-2">
+          <h1 className="text-4xl font-black tracking-tight text-white drop-shadow-lg" style={{ fontFamily: "Georgia, serif", letterSpacing: "-2px" }}>
+            socialapp
+          </h1>
+          <p className="text-sm text-white/90 mt-1">Share your moments</p>
+        </div>
+        <Card className="border-0 rounded-lg shadow-2xl bg-white">
+          <CardHeader className="pb-3">
+            <CardTitle className="text-center text-sm font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">
               {mode === "login"
-                ? "Sign in to your account"
-                : "Create an account"}
+                ? "Log in"
+                : "Sign up"}
             </CardTitle>
           </CardHeader>
           <CardContent>
@@ -155,9 +158,9 @@ export default function AuthPage({ onLogin }: Props) {
                 />
               </div>
 
-              {error && <p className="text-sm text-destructive">{error}</p>}
+              {error && <p className="text-sm text-red-500 font-medium">{error}</p>}
 
-              <Button type="submit" disabled={loading} className="w-full">
+              <Button type="submit" disabled={loading} className="w-full bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-white font-semibold hover:shadow-lg hover:opacity-90">
                 {loading
                   ? "Loading…"
                   : mode === "login"
@@ -166,12 +169,12 @@ export default function AuthPage({ onLogin }: Props) {
               </Button>
             </form>
 
-            <p className="mt-4 text-center text-sm text-muted-foreground">
+            <p className="mt-4 text-center text-sm text-gray-500">
               {mode === "login" ? "No account?" : "Already have an account?"}{" "}
               <button
                 type="button"
                 onClick={toggle}
-                className="underline text-foreground"
+                className="font-semibold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent hover:opacity-80"
               >
                 {mode === "login" ? "Register" : "Sign in"}
               </button>
