@@ -30,6 +30,19 @@ httpServer.setErrorHandler((err: any, req, rep) => {
 async function start() {
   await httpServer.register(fastifyCors, { origin: true });
 
+  httpServer.get("/", async () => {
+    return {
+      status: "ok",
+      service: "socialapp",
+    };
+  });
+
+  httpServer.get("/health", async () => {
+    return {
+      status: "ok",
+    };
+  });
+
   await httpServer.register(auth);
 
   await httpServer.register(fastifyMultipart, {
